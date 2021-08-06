@@ -14,10 +14,11 @@ $ go get github.com/jfontan/fifo
 
 Example:
 
-```
+```go
 import "github.com/jfontan/fifo"
 
-```go
+...
+
     s := NewString()
 
     s.Push("data")
