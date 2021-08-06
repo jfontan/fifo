@@ -24,6 +24,7 @@ func (s *String) Pop() (string, bool) {
 	}
 
 	item := s.items[s.pos]
+	s.items[s.pos] = ""
 	s.pos++
 
 	s.compact()
