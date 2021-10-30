@@ -2,13 +2,8 @@ package fifo
 
 import "testing"
 
-type Queue interface {
-	Pop() (string, bool)
-	Push(...string)
-}
-
 func BenchmarkGeneric(b *testing.B) {
-	q := New[string]()
+	q := NewGeneric[string]()
 	for n := 0; n < b.N; n++ {
 		benchmark(q)
 	}
@@ -51,7 +46,7 @@ var benchCases = []struct {
 	},
 }
 
-func benchmark(q Queue) {
+func benchmark(q Queue[string]) {
 	for _, step := range benchCases {
 		for c := 0; c < step.counter; c++ {
 			if step.add {

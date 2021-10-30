@@ -8,7 +8,7 @@ import (
 )
 
 func TestFIFO(t *testing.T) {
-	s := New[string]()
+	s := NewGeneric[string]()
 
 	var expected []string
 	var result []string
