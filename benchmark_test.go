@@ -16,6 +16,13 @@ func BenchmarkString(b *testing.B) {
 	}
 }
 
+func BenchmarkChunk(b *testing.B) {
+	q := NewChunk[string]()
+	for n := 0; n < b.N; n++ {
+		benchmark(q)
+	}
+}
+
 var benchCases = []struct {
 	counter int
 	add     bool
