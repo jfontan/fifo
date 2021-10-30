@@ -7,20 +7,21 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestString(t *testing.T) {
-	s := NewString()
+func TestChunk(t *testing.T) {
+	q := NewChunk[string]()
+	testQueue(t, q)
+}
+
+func testQueue(t *testing.T, q Queue[string]) {
+	s := NewGeneric[string]()
 
 	var expected []string
 	var result []string
 
-	var max int
 	for i := 0; i < 1000; i++ {
 		v := strconv.Itoa(i)
 		expected = append(expected, v)
 		s.Push(v)
-		if cap(s.items) > max {
-			max = cap(s.items)
-		}
 	}
 
 	for i := 0; i < 750; i++ {
@@ -33,9 +34,6 @@ func TestString(t *testing.T) {
 		v := strconv.Itoa(i)
 		expected = append(expected, v)
 		s.Push(v)
-		if cap(s.items) > max {
-			max = cap(s.items)
-		}
 	}
 
 	for {
@@ -51,9 +49,6 @@ func TestString(t *testing.T) {
 		v := strconv.Itoa(i)
 		expected = append(expected, v)
 		s.Push(v)
-		if cap(s.items) > max {
-			max = cap(s.items)
-		}
 	}
 
 	for {
@@ -65,6 +60,5 @@ func TestString(t *testing.T) {
 	}
 
 	require.Equal(t, expected, result)
-	require.Less(t, max, 2048)
 	require.Equal(t, 0, cap(s.items))
 }
