@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestString(t *testing.T) {
-	s := NewString()
+func TestFIFO(t *testing.T) {
+	s := New[string]()
 
 	var expected []string
 	var result []string
